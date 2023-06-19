@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assingment</title>
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Kanit&family=Montserrat+Alternates&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300&display=swap');
+        body {
+            background-color: rgb(255, 255, 255);
+        }
+        div1,h1,button {
+            font-family: "Kanit",sans-serif;
+            color:rgb(0, 0, 0)
+        }
+        p,b,th {
+            font-family: "Sarabun",sans-serif;
+            color: rgb(0, 0, 0);
+        }
+        table1{
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px 150px;
+        }
+        .center {
+            text-align: center;
+        }
+        #myTable {
+            display: none;
+            border-collapse: collapse;
+        }
+        table,td,th {
+            border: 1px solid;
+        }
+        th {
+            background-color: lightgoldenrodyellow;
+        }
+    
+    </style>
+
+</head>
+<body onload="displaytime()">
+    <div class="center">
+        <table1>
+            <tr>
+                <b>แบบฝึกหัด JavaScript</b>
+            </tr>
+        </table1>
+    </div>
+    <div>
+        <br>
+        <p>สร้างเว็ปเพจที่สามารถทำสิ่งต่อไปนี้ได้</p>
+        <p>
+            1. แสดงคำว่า สวัสดีชาวโลก ด้วยข้อความสีดำ แล้วเมื่อกดปุ่ม เปลี่ยนสีใหม่ให้เป็นสีแดง
+        </p>
+        <h1 id="header" style="color: black;">สวัสดีชาวโลก</h1>
+        <div>
+            <button type="button" onclick="document.getElementById('header').style.color='red'">เปลี่ยนสี</button>
+        </div>
+    </div>
+    <br>
+    <br>
+    <p>2. ให้แสดงวันที่และเวลาปัจจุบัน ในรูปแบบดังรูป</p>
+    <div1 id="time" class="__web-inspector-hide-shortcut__">16 มิถุนายน 2566 00:00:20</div1>
+    <script>
+        
+    function formatTimeThai(date) {
+      var day = date.getDate().toString().padStart(2, '0');
+      var month = date.toLocaleString('th-TH', { month: 'long' });
+      var year = date.getFullYear()+543;
+      var hours = date.getHours().toString().padStart(2, '0');
+      var minutes = date.getMinutes().toString().padStart(2, '0');
+      var seconds = date.getSeconds().toString().padStart(2, '0');
+      return day + ' ' + month + ' ' + year + ' ' + hours + ':' + minutes + ':' + seconds;
+    }
+    function updateTime() {
+      var currentTime = new Date();
+      var formattedTime = formatTimeThai(currentTime);
+      document.getElementById('time').textContent = formattedTime;
+    }
+    setInterval(updateTime, 1000);
+    
+    </script>
+    <br>
+    <br>
+    <p>3. ให้แสดงภาพแมว ซึ่งสามารถสลับท่าทางของแมวตามการกดปุ่มได้ ดังรูป</p>
+    <div>
+        <button id="cat" onclick="document.getElementById('myImage').src='Idle.png'">แมวยืน</button>
+        <img id="myImage" src="Idle.png" width="200px">
+        <button id="cat" onclick="document.getElementById('myImage').src='Slide.png'">แมวสไลด์</button>
+    </div>
+    <br>
+    <br>
+    <p>4. ให้สร้างปุ่มซ่อนหรือแสดงตารางได้ดังรูป</p>
+    <script>
+        function showTable() {
+      var table = document.getElementById("myTable");
+      table.style.display = "table";
+    }
+
+    function hideTable() {
+      var table = document.getElementById("myTable");
+      table.style.display = "none";
+    }
+    
+    </script>
+    <button style="font-family:Sarabun" onclick="showTable()">แสดงตาราง</button>
+    <button style="font-family:Sarabun" onclick="hideTable()">ซ่อนตาราง</button>
+    <br>
+    <br>
+    <table id="myTable" style="margin-right: auto; display: none;">
+        <caption style="font-size: 15px;">ตารางสินค้า</caption>
+      <tbody><tr>
+        <th>รายการที่ 1</th>
+        <th>รายการที่ 2</th>
+        <th>รายการที่ 3</th>
+      </tr>
+      <tr>
+        <td>74</td>
+        <td>111</td>
+        <td>46</td>
+      </tr>
+      <tr>
+        <td>35</td>
+        <td>23</td>
+        <td>15</td>
+      </tr>
+    </tbody></table>
+    <br>
+    <br>
+    <p>5. ให้รับข้อมูลตัวเลข 3 ตัวจากผู้ใช้ผ่าน input box แล้วเมื่อกดปุ่ม Submit แสดงค่าเฉลี่ย ค่าสูงสุด และค่าต่ำสุดออกมา</p>
+    <p style="font-family: Kanit; margin-bottom: auto;">Number #1</p>
+    <input type="text" id="num1">
+    <p style="font-family: Kanit; margin-bottom: auto;">Number #2</p>
+    <input type="text" id="num2">
+    <p style="font-family: Kanit; margin-bottom: auto;">Number #3</p>
+    <input type="text" id="num3">
+    <br>
+    <br>
+    <button onclick="AverageMinMax()" style="font-family: Arial">Submit</button>
+    <p id="averageResult" style="font-family: Kanit;"></p>
+    <p id="minResult" style="font-family: Kanit;"></p>
+    <p id="maxResult" style="font-family: Kanit;"></p>
+    <script>
+        function AverageMinMax() {
+            var num1,num2,num3,min,max
+            num1 = parseInt(document.getElementById("num1").value);
+            num2 = parseInt(document.getElementById("num2").value);
+            num3 = parseInt(document.getElementById("num3").value);
+            min = Math.min(num1, num2, num3);
+            max = Math.max(num1, num2, num3);
+            average = (num1+num2+num3)/3;
+			document.getElementById("averageResult").innerHTML = "ค่าเฉลี่ย "+average;
+            document.getElementById("minResult").innerHTML = "ค่าต่ำสุด "+min;
+            document.getElementById("maxResult").innerHTML = "ค่าสูงสุด "+max;
+		}
+    
+
+    </script>
+</body>
+</html>
